@@ -19,5 +19,5 @@ jobs:
           
       - name: Try SSH
         run: |
-          ssh -i $SSH_KEY_PATH ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
 
