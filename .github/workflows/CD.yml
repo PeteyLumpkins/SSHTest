@@ -19,5 +19,5 @@ jobs:
           
       - name: Try SSH
         run: |
-          ssh -T ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+          ssh -T root@209.151.152.149
 
