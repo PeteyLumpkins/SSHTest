@@ -2,17 +2,22 @@ name: deploy
 on:
   workflow_dispatch:
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Add the ssh key
-        run: cat ${{ secrets.SSH_PRIVATE_KEY }} > ~/.ssh/id_rsa
-
-      - name: Adding Known Hosts
-        run: ssh-keyscan -H ${{ secrets.SSH_HOST }}  >> ~/.ssh/known_hosts
-
-      - name: Write text file with scp maybe
-        run: scp hi.txt ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/test
+      - name: Create SSH key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ../private.key
+          sudo chmod 600 ../private.key
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+        shell: bash
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+          SSH_KEY_PATH: ${{ github.workspace }}/../private.key
+          
+      - name: Try SSH
+        run: |
+          ssh -i $SSH_KEY_PATH ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
 
