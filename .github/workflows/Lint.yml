@@ -10,4 +10,8 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
         
+      - name: SSH into Host
+        run: |
+          ssh root:${{ secrets.SSH_HOST }} "ls"
+        
           
