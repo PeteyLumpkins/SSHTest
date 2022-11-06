@@ -1,0 +1,12 @@
+name: Super-Linter
+
+on: workflow_dispatch
+
+jobs:
+  super-lint:
+    name: Lint code base
+    runs-on: self-hosted
+    steps:
+    
+      - name: Check out code
+        uses: actions/checkout@v2
