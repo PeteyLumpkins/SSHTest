@@ -13,4 +13,5 @@ jobs:
       - name: Do stuff?
         run: |
           ssh root@209.151.152.149
+          ls
           
