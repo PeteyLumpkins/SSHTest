@@ -10,8 +10,4 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
         
-      - name: Do stuff?
-        run: |
-          ssh root@209.151.152.149
-          ls
           
