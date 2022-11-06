@@ -12,6 +12,6 @@ jobs:
         
       - name: SSH into Host
         run: |
-          ssh root:${{ secrets.SSH_HOST }} "ls"
+          ssh root@${{ secrets.SSH_HOST }} "ls"
         
           
